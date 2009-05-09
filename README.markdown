@@ -7,6 +7,19 @@ logging levels with either a String, or a function that returns a String. If
 the log level is not activated then the function will not be evaluated, so
 Strings are not created unnecessarily.
 
+To build, you need the [simple-build-tool](http://code.google.com/p/simple-build-tool/)
+
+To compile:
+    sbt compile
+
+To make a jar file:
+    sbt package
+
+To run the tests:
+    sbt update # run once to download Scalatest
+    sbt test
+
+
 
 Example usage:
 
