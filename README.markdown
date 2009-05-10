@@ -19,6 +19,8 @@ To run the tests:
     sbt update # run once to download Scalatest
     sbt test
 
+The code is licensed under the MIT license (aka the X11 license).
+
 
 
 Example usage:
