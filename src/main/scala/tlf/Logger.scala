@@ -58,6 +58,16 @@ object Logging{
   }
 
   /**
+   Add Stderr as a destination for log messages
+  */
+  def toStderr{
+    if (!(output.exists(_==System.err))){
+      addPrintStream(System.err)
+    }
+  }
+
+
+  /**
    Add a printstream to log to
   */
   def addPrintStream(p:PrintStream){
