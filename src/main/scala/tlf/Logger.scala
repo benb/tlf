@@ -42,6 +42,11 @@ object Logging{
    Default level for newly created Logging objects
   */
   var level = Severe
+
+  def reset{
+    level=Severe
+    output=List()
+  }
   
   /**
    Add Stdout as a destination for log messages
@@ -78,4 +83,6 @@ object Logging{
   def setLevel(l:String){
     level =  valueOf(l(0).toUpperCase+l.drop(1).toLowerCase).getOrElse(level)
   }
+
+
 }

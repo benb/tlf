@@ -37,4 +37,26 @@ class LoggingTest extends Suite{
     foo2.test(Debug)
     assert(count==3)
   }
+
+  def testStopwatch{
+    Logging.reset
+    Logging.setLevel("Debug")
+    Logging.toStdout
+    val watch = new Stopwatch
+    watch.start
+    watch.reset
+    Thread.sleep(2000)
+    assert(watch.reset > 1999)
+  }
+
+  def testTime{
+    val millis = (1000L*60*60*2 + 1000L*60*32 + 23132L)
+    val t = new Time(millis)
+    println(millis)
+    println(t)
+    assert(t.toString == "02:32:23.132")
+    val millis2 = (1000L*60*60*312+ 1000L*60*3 + 47236L)
+    val t2 = new Time(millis2)
+    assert(t2.toString == "312:03:47.236")
+  }
 }
