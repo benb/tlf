@@ -7,3 +7,4 @@ Trivial Logging Framework for Scala API Docs
 ================
 
 [v1.0](1.0-api/)
+[v1.1](1.1-api/)
