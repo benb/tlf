@@ -2,9 +2,10 @@ import sbt._
 
 class TLFProject(info: ProjectInfo) extends DefaultProject(info)
 {
-  val scalatest = "org.scala-tools.testing" % "scalatest" % "0.9.5"
+  val newReleaseToolsRepository = "Scala Tools Repository" at " http://nexus.scala-tools.org/content/repositories/snapshots/" 
+  val scalatest = "org.scalatest" % "scalatest" % "1.2-for-scala-2.8.0.RC2-SNAPSHOT" 
   override def managedStyle = ManagedStyle.Maven 
-  lazy val publishTo = Resolver.file("Publish", new java.io.File("../benb.github.com/maven/ ")) 
+  lazy val publishTo = Resolver.file("Publish", new java.io.File("../benb.github.com/maven/")) 
 }
 
 

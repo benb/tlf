@@ -91,7 +91,7 @@ object Logging{
    Set the default log level with a string (e.g. "Debug" or "Severe").
   */
   def setLevel(l:String){
-    level =  valueOf(l(0).toUpperCase+l.drop(1).toLowerCase).getOrElse(level)
+    level =  valueOf(l(0).toString.toUpperCase+l.drop(1).toLowerCase).getOrElse(level)
   }
 
 
