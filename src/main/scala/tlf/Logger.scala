@@ -7,28 +7,19 @@ Extend this in your classes to include logging facilities
 */
 trait Logging {
   import Level._
-  import java.io.PrintStream
-  private var additionalOutputs:List[PrintStream]=List() // locations of outputs specific to this class
   /**
     The log level used by this object
   */
   var logLevel=Logging.level 
-  def log(level:Level,s: => String){if (level >= logLevel){Logging.unconditionalLog(s,additionalOutputs)}}
+  def log(level:Level,s: => String){if (level >= logLevel){Logging.unconditionalLog(s)}}
   def debug(s: => String)=log(Debug,s)
   def extra(s: => String)=log(Extra,s)
   def finest(s: => String)=log(Finest,s)
   def info(s: => String)=log(Info,s)
   def warning(s: => String)=log(Warning,s)
   def severe(s: => String)=log(Severe,s)
-
-
-  def addPrintStream(ps:PrintStream){
-    additionalOutputs = ps::additionalOutputs
-  }
-  def removePrintStream(ps:PrintStream){
-    additionalOutputs = additionalOutputs.filter{_!=ps}
-  }
-}
+  
+ }
 
 
 /**
@@ -95,16 +86,12 @@ object Logging{
     lazy val s2:String=s // Only compute once if streams are present, 0 if not
     output.foreach{p=>p.println(s2)}
   }
-  private def unconditionalLog(s: => String,additionalOutputs:List[PrintStream]){
-    lazy val s2:String=s // Only compute once if streams are present, 0 if not
-    (output ++ additionalOutputs).removeDuplicates.foreach{p=>p.println(s2)}
-  }
 
   /**
    Set the default log level with a string (e.g. "Debug" or "Severe").
   */
   def setLevel(l:String){
-    level =  valueOf(l(0).toString.toUpperCase+l.drop(1).toLowerCase).getOrElse(level)
+    level =  values.find{s=>s==(l(0).toString.toUpperCase+l.drop(1).toLowerCase)}.getOrElse(level)
   }
 
 

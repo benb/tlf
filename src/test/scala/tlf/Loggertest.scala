@@ -4,29 +4,6 @@ import org.scalatest.Suite
 
 
 class LoggingTest extends Suite{
-    def testIndividualLogging{
-      var count=0
-      class Foo extends Logging{
-        def test(level:Level){log(level,{count+=1; count.toString})}
-      }
-      var foo1=new Foo
-      var foo2=new Foo
-      foo1.addPrintStream(System.out)
-      foo1.logLevel=Debug
-      foo2.logLevel=Debug
-      foo1.test(Info)
-      assert(count==1)
-      foo2.test(Info)
-      assert(count==1)//should not trigger
-
-      Logging.toStdout
-      foo1.test(Info)
-      assert(count==2)
-      foo2.test(Info)
-      assert(count==3)
-    }
-
-
   def testLevel{
     Logging.toStdout
     var count =0
@@ -60,6 +37,7 @@ class LoggingTest extends Suite{
     foo2.test(Debug)
     assert(count==3)
   }
+
   def testStopwatch{
     Logging.reset
     Logging.setLevel("Debug")
